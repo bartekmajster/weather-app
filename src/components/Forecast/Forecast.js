@@ -37,7 +37,7 @@ const Forecast = ({ data, charts }) => (
         margin={{
           top: 5,
           right: 30,
-          left: -30,
+          left: 30,
           bottom: 5,
         }}
         stackOffset="sign"
