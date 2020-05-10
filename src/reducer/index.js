@@ -18,12 +18,12 @@ function addReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_DATA_SUCCESS:
       // eslint-disable-next-line no-case-declarations
-      action.data.data.data.forEach((item) => rain.push(item.precip));
-      action.data.data.data.forEach((item) => temp.push({ pv: item.temp.toFixed() }));
-      action.data.data.data.forEach((item) => pressure.push({ pv: item.pres.toFixed() - 1000 }));
+      action.payload.data.data.forEach((item) => rain.push(item.precip));
+      action.payload.data.data.forEach((item) => temp.push({ pv: item.temp.toFixed() }));
+      action.payload.data.data.forEach((item) => pressure.push({ pv: item.pres.toFixed() - 1000 }));
       return {
         ...state,
-        data: action.data.data.data,
+        data: action.payload.data.data,
         chartsData: {
           maxRain: Math.max(...rain),
           temp,

@@ -1,4 +1,4 @@
-import React, { useStateW, useRef } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 const arrowStyle = css`
@@ -95,7 +95,7 @@ class Carousel extends React.Component {
     this.handleSnap();
   };
 
-  handleMouseMove = (e, arrow = 0) => {
+  handleMouseMove = (e) => {
     const { isDown, startX, transLeftOffset, dragSpeed } = this.state;
     e.preventDefault();
     const carousel = this.cRef.current;
@@ -107,7 +107,7 @@ class Carousel extends React.Component {
   };
 
   handleArrowClick = (e, offset) => {
-    const { transLeftOffset, dragSpeed } = this.state;
+    const { transLeftOffset} = this.state;
     const carousel = this.cRef.current;
     carousel.firstChild.style = `
     transform: translateX(${transLeftOffset + offset}px);
@@ -118,7 +118,7 @@ class Carousel extends React.Component {
   };
 
   giveMeIntValOf = (el) => {
-    return parseInt(el.replace('translateX(', '').replace('px)', ''));
+    return parseInt(el.replace('translateX(', '').replace('px)', ''),10);
   };
 
   handleSnap = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { LineChart, Line } from 'recharts';
+import { LineChart, Line, YAxis } from 'recharts';
 import CustomizedLabel from '../CustomizedLabel/CustomizedLabel';
 import SingleForecast from '../SingleForecast/SigleForecast';
 
@@ -35,11 +35,12 @@ const Forecast = ({ data, charts }) => (
         height={110}
         data={charts.temp}
         margin={{
-          top: 25,
+          top: 5,
           right: 30,
-          left: 30,
-          bottom: 10,
+          left: -30,
+          bottom: 5,
         }}
+        stackOffset="sign"
       >
         <Line
           type="monotone"
@@ -49,6 +50,7 @@ const Forecast = ({ data, charts }) => (
           strokeWidth={1.5}
           dot={{ r: 4, stroke: 'black' }}
         />
+        <YAxis type="number" domain={[-40, 40]} hide/>
       </LineChart>
     </StyledTempChart>
     <StyledPressChart>

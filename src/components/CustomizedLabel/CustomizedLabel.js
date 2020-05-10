@@ -21,7 +21,7 @@ export default CustomizedLabel;
 CustomizedLabel.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
   temp: PropTypes.bool,
 };
 CustomizedLabel.defaultProps = {
