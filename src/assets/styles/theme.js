@@ -5,4 +5,14 @@ export const mainTheme = {
   grey300: 'hsl(0, 0%, 36%)',
   blue: 'hsl(195, 100%, 60%)',
   yellow: 'hsl(47, 98%, 68%)',
+  height: {
+    day: '20px',
+    time: '30px',
+    forecast: '35px',
+    temperature: '110px',
+    rain: '60px',
+    windDirection: '60px',
+    windSpeed: '50px',
+    pressure: '100px',
+  },
 };

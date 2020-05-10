@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
+  height: ${({ theme }) => theme.height.forecast};
   border-left: 1px solid ${({ theme }) => theme.grey100};
 `;
 

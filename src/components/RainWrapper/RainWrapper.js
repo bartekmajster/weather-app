@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  height: 60px;
+  height: ${({ theme }) => theme.height.rain};
   border-left: 1px solid ${({ theme }) => theme.grey100};
 `;
 

@@ -8,8 +8,8 @@ const Wrapper = styled.div`
   font-weight: 400;
   text-transform: uppercase;
   padding-left: 6px;
-  height: 15px;
-  line-height: 15px;
+  height: ${({ theme }) => theme.height.day};
+  line-height: 20px;
   color: ${({ theme }) => theme.grey200};
   border-left: ${({ theme, border }) => (border ? `1px solid ${theme.grey100}` : 'none')}};
 `;

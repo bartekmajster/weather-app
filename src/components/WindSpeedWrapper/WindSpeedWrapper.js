@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import convertWindSpeed from '../utils/convertWindSpeed';
+import convertWindSpeed from '../../utils/convertWindSpeed';
 
 const Wrapper = styled.div`
-  height: 50px;
+  height: ${({ theme }) => theme.height.windSpeed};
   border-left: 1px solid ${({ theme }) => theme.grey100};
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
   span:nth-of-type(1) {
     font-size: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 5px  ;
   }
 
   span:nth-of-type(2) {

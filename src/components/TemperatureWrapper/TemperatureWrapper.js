@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   border-left: 1px solid ${({ theme }) => theme.grey100};
-  height: 110px;
+  height: ${({ theme }) => theme.height.temperature};
 `;
 
-const TemperatureWrapper = ({ temp }) => {
+const TemperatureWrapper = () => {
   return <Wrapper />;
 };
 

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   font-weight: 400;
   text-transform: uppercase;
   padding-left: 6px;
-  height: 30px;
+  height: ${({ theme }) => theme.height.time};
   line-height: 30px;
   color: ${({ theme }) => theme.grey200};
   border-left: 1px solid ${({ theme }) => theme.grey100};

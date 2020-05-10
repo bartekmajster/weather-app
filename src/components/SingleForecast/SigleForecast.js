@@ -7,7 +7,8 @@ import ForecastWrapper from '../ForecastWrapper/ForecastWrapper';
 import TemperatureWrapper from '../TemperatureWrapper/TemperatureWrapper';
 import RainWrapper from '../RainWrapper/RainWrapper';
 import WindDirWrapper from '../WindDirWrapper/WindDirWrapper';
-import WindSpeedWrapper from '../../WindSpeedWrapper/WindSpeedWrapper';
+import WindSpeedWrapper from '../WindSpeedWrapper/WindSpeedWrapper';
+import PressureWrapper from '../PressureWrapper/PressureWrapper';
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const SingleForecast = ({ data, maxRain }) => (
     <RainWrapper rain={data.precip} maxRain={maxRain} />
     <WindDirWrapper wind={data.wind_dir} />
     <WindSpeedWrapper wind={data.wind_spd} />
+    <PressureWrapper />
   </Wrapper>
 );
 export default SingleForecast;

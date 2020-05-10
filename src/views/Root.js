@@ -1,48 +1,66 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchedDataAction } from '../actions';
 import InfoBar from '../components/InfoBar/InfoBar';
-import SingleForecast from '../components/SingleForecast/SigleForecast';
+import Forecast from '../components/Forecast/Forecast';
+import Carousel from '../components/Carousel/Carousel';
 
 const Wrapper = styled.div`
+  overflow: hidden;
+  display: flex;
   position: relative;
   margin: 15px;
-  height: 470px;
-  display: flex;
 `;
 
-const ForecastWrapper = styled.div`
-  box-shadow: inset 31px 0px 17px -32px rgba(0, 0, 0, 0.18);
-  position: absolute;
-  display: flex;
-  left: 70px;
-  width: calc(85px * 48);
-  top: 0;
-  height: 100%;
+const InnerWrapper = styled.div`
+  width: 720px;
+  overflow: hidden;
+  transform: translateX(-1px);
 `;
 
-const Root = ({ data, maxRain, fetchedData }) => {
+const Root = ({ data, chartsData, fetchedData }) => {
   useEffect(() => {
     fetchedData();
   }, []);
 
+  const setting = {
+    dragSpeed: 1.25,
+    itemWidth: 60,
+    itemHeight: 260,
+    itemSideOffsets: 15,
+  };
+
+  const ShadowWrapperRight = styled.div`
+    position: absolute;
+    z-index: 2999;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    box-shadow: inset -20px 0px 31px -4px rgba(255, 255, 255, 0.69);
+  `;
+
   return (
-    <Wrapper>
-      <InfoBar />
-      <ForecastWrapper>
-        {data.map((item) => (
-          <SingleForecast data={item} key={item.ts} maxRain={maxRain} />
-        ))}
-      </ForecastWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <InfoBar />
+        <InnerWrapper>
+          <Carousel _data={data} {...setting}>
+            <Forecast data={data} charts={chartsData} />
+          </Carousel>
+          <ShadowWrapperRight />
+        </InnerWrapper>
+      </Wrapper>
+    </>
   );
 };
 
 const mapStateToProps = (state) => ({
   data: state.data,
-  maxRain: state.maxRain,
+  chartsData: state.chartsData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -53,19 +71,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(Root);
 
 Root.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
-  maxRain: PropTypes.number.isRequired,
+  chartsData: PropTypes.shape({
+    maxRain: PropTypes.number,
+    minTemp: PropTypes.number,
+    maxTemp: PropTypes.number,
+    temp: PropTypes.arrayOf(PropTypes.object),
+  }),
   fetchedData: PropTypes.func.isRequired,
 };
 Root.defaultProps = {
   data: [],
+  chartsData: {
+    maxRain: null,
+    minTemp: null,
+    maxTemp: null,
+    temp: [],
+  },
 };
-
-/*<div>
-  <p>{item.timestamp_utc}</p>
-  <p>{item.weather.icon}</p>
-  <p>{item.temp}</p>
-  <p>{item.precip}</p>
-  <p>{item.wind_dir}</p>
-  <p>{item.wind_spd}</p>
-  <p>{item.pres}</p>
-</div>*/

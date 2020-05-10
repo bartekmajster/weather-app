@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const fieldsNames = [
   {
@@ -46,6 +46,18 @@ const Wrapper = styled.ul`
   border-right: 1px solid ${({ theme }) => theme.grey100};
   color: ${({ theme }) => theme.grey300};
 `;
+const ShadowWrapperLeft = styled.div`
+  position: absolute;
+  z-index: 2999;
+  top: 0;
+  left: 70px;
+  height: 100%;
+  width: 20px;
+  box-shadow: inset 10px 0px 8px -2px rgba(0,0,0,0.11);
+  pointer-events: none;
+`;
+
+
 
 const InnerWrapper = styled.li`
   display: flex;
@@ -54,55 +66,19 @@ const InnerWrapper = styled.li`
   text-align: center;
   padding: 2px;
   border-bottom: 1px solid ${({ theme }) => theme.grey100};
-
-  ${({ name }) => {
-    switch (name) {
-      case 'day':
-        return css`
-          height: 16px;
-        `;
-      case 'time':
-        return css`
-          height: 30px;
-        `;
-      case 'forecast':
-        return css`
-          height: 35px;
-        `;
-      case 'temperature':
-        return css`
-          height: 110px;
-        `;
-      case 'rain':
-        return css`
-          height: 60px;
-        `;
-      case 'windDirection':
-        return css`
-          height: 60px;
-        `;
-      case 'windSpeed':
-        return css`
-          height: 50px;
-        `;
-      case 'pressure':
-        return css`
-          height: 100px;
-          border-bottom: 0;
-        `;
-      default:
-        return null;
-    }
-  }}
+  height: ${({ theme, name }) => theme.height[name]};
 `;
 const InfoBar = () => (
-  <Wrapper>
-    {fieldsNames.map(({ id, name }) => (
-      <InnerWrapper name={id} key={id}>
-        <span>{name}</span>
-      </InnerWrapper>
-    ))}
-  </Wrapper>
+  <>
+    <Wrapper>
+      {fieldsNames.map(({ id, name }) => (
+        <InnerWrapper name={id} key={id}>
+          <span>{name}</span>
+        </InnerWrapper>
+      ))}
+    </Wrapper>
+    <ShadowWrapperLeft />
+  </>
 );
 
 export default InfoBar;

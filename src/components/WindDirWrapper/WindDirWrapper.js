@@ -5,7 +5,7 @@ import arrow from '../../assets/arrow.png';
 import convertWindDeg from '../../utils/convertWindDeg';
 
 const Wrapper = styled.div`
-  height: 60px;
+  height: ${({ theme }) => theme.height.windDirection};
   border-left: 1px solid ${({ theme }) => theme.grey100};
   display: flex;
   flex-direction: column;
